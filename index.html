@@ -1,11 +1,446 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="ru">
+<head>
     <meta charset="UTF-8">
-    <title>Mark & Olya — Свадебная капсула</title>
-  </head>
-  <body>
-    <h1>Добро пожаловать в свадебную капсулу времени!</h1>
-    <p>Здесь будут храниться ваши поздравления и пожелания на долгие годы.</p>
-  </body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark & Olya - Капсула времени 💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Caveat:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comfortaa', cursive;
+            background: linear-gradient(135deg, #FFFAF0 0%, #E6E6FA 50%, #FFB7C5 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Падающие лепестки сакуры */
+        .sakura {
+            position: fixed;
+            top: -10px;
+            z-index: 1;
+            user-select: none;
+            pointer-events: none;
+            color: #FFB7C5;
+            font-size: 20px;
+            animation: sakura-fall linear infinite;
+        }
+        
+        @keyframes sakura-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(147, 112, 219, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .title {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #9370DB, #DDA0DD, #FFB7C5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .intro {
+            background: linear-gradient(135deg, rgba(255, 183, 197, 0.2), rgba(230, 230, 250, 0.2));
+            padding: 25px;
+            border-radius: 20px;
+            border: 2px solid rgba(147, 112, 219, 0.3);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .capsules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .capsule {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(147, 112, 219, 0.2);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .capsule:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(147, 112, 219, 0.3);
+            border-color: rgba(255, 183, 197, 0.6);
+        }
+        
+        .capsule::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .capsule:hover::before {
+            left: 100%;
+        }
+        
+        .capsule.locked {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 183, 197, 0.1));
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+        
+        .capsule.unlocked {
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.1), rgba(230, 230, 250, 0.1));
+            border-color: rgba(135, 206, 235, 0.4);
+        }
+        
+        .capsule-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+        }
+        
+        .locked .capsule-icon {
+            color: #FFD700;
+            animation: pulse 2s infinite;
+        }
+        
+        .unlocked .capsule-icon {
+            color: #87CEEB;
+            animation: sparkle 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.1); }
+            50% { transform: rotate(180deg) scale(1); }
+            75% { transform: rotate(270deg) scale(1.1); }
+        }
+        
+        .capsule-title {
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+            line-height: 1.3;
+        }
+        
+        .timer {
+            background: linear-gradient(45deg, #9370DB, #DDA0DD);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .timer-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .time-display {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .unlock-btn {
+            background: linear-gradient(45deg, #DC143C, #FF69B4);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .unlock-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(220, 20, 60, 0.4);
+        }
+        
+        .unlock-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .content-preview {
+            background: rgba(230, 230, 250, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+            text-align: center;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            margin-top: 50px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .hearts {
+            color: #DC143C;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .capsules-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .capsule {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Mark & Olya 💕</h1>
+            <p class="subtitle">Капсула времени нашей любви</p>
+            <div class="intro">
+                ✨ Добро пожаловать в нашу магическую книгу воспоминаний! ✨<br>
+                Здесь хранятся послания от ваших близких, которые откроются в особенные моменты вашего совместного пути. 
+                Каждая капсула запечатана временем и любовью. 🌸
+            </div>
+        </header>
+        
+        <main class="capsules-grid">
+            <div class="capsule locked" data-unlock-date="2026-07-06">
+                <span class="capsule-icon">🔒✨</span>
+                <h2 class="capsule-title">Год под цветущей сакурой 🌸</h2>
+                <div class="timer">
+                    <div class="timer-label">Откроется через:</div>
+                    <div class="time-display" id="timer1">365 дней</div>
+                </div>
+                <div class="content-preview">
+                    Первые поздравления с годовщиной ждут вас под лепестками времени...
+                </div>
+            </div>
+            
+            <div class="capsule locked" data-unlock-date="2028-07-06">
+                <span class="capsule-icon">🔒🌊</span>
+                <h2 class="capsule-title">Три весны в отражении озера 🌊</h2>
+                <div class="timer">
+                    <div class="timer-label">Откроется через:</div>
+                    <div class="time-display" id="timer3">3 года</div>
+                </div>
+                <div class="content-preview">
+                    Воспоминания третьей весны отражаются в глубине времени...
+                </div>
+            </div>
+            
+            <div class="capsule locked" data-unlock-date="2030-07-06">
+                <span class="capsule-icon">🔒☀️</span>
+                <h2 class="capsule-title">Пять кругов солнца над нашей дорогой ☀️</h2>
+                <div class="timer">
+                    <div class="timer-label">Откроется через:</div>
+                    <div class="time-display" id="timer5">5 лет</div>
+                </div>
+                <div class="content-preview">
+                    Солнечные послания пятилетнего счастья ждут своего часа...
+                </div>
+            </div>
+            
+            <div class="capsule locked" data-unlock-date="2035-07-06">
+                <span class="capsule-icon">🔒🌌</span>
+                <h2 class="capsule-title">Десять лет под небом тысячи звёзд 🌌</h2>
+                <div class="timer">
+                    <div class="timer-label">Откроется через:</div>
+                    <div class="time-display" id="timer10">10 лет</div>
+                </div>
+                <div class="content-preview">
+                    Звёздная пыль десятилетия хранит особенные слова любви...
+                </div>
+            </div>
+            
+            <div class="capsule locked" data-unlock-date="2050-07-06">
+                <span class="capsule-icon">🔒🌙</span>
+                <h2 class="capsule-title">Двадцать пять лет в свете серебряной луны 🌙</h2>
+                <div class="timer">
+                    <div class="timer-label">Откроется через:</div>
+                    <div class="time-display" id="timer25">25 лет</div>
+                </div>
+                <div class="content-preview">
+                    Серебряный свет четверти века озарит древние послания...
+                </div>
+            </div>
+            
+            <div class="capsule locked" data-unlock-date="2075-07-06">
+                <span class="capsule-icon">🔒✨</span>
+                <h2 class="capsule-title">Золотое небо на вершине пути ✨</h2>
+                <div class="timer">
+                    <div class="timer-label">Откроется через:</div>
+                    <div class="time-display" id="timer50">50 лет</div>
+                </div>
+                <div class="content-preview">
+                    Золотые слова полувекового счастья сияют в вечности...
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>Создано с <span class="hearts">❤️</span> для Mark & Olya</p>
+            <p>Капсула времени откроет свои секреты в назначенный час</p>
+        </footer>
+    </div>
+
+    <script>
+        // Создание падающих лепестков сакуры
+        function createSakura() {
+            const sakura = document.createElement('div');
+            sakura.className = 'sakura';
+            sakura.innerHTML = '🌸';
+            sakura.style.left = Math.random() * 100 + 'vw';
+            sakura.style.animationDuration = (Math.random() * 6 + 8) + 's';
+            sakura.style.opacity = Math.random() * 0.7 + 0.3;
+            sakura.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            document.body.appendChild(sakura);
+            
+            setTimeout(() => {
+                sakura.remove();
+            }, 14000);
+        }
+        
+        // Запуск лепестков
+        setInterval(createSakura, 2000);
+        
+        // Функция обновления таймеров
+        function updateTimers() {
+            const now = new Date();
+            const capsules = document.querySelectorAll('.capsule[data-unlock-date]');
+            
+            capsules.forEach(capsule => {
+                const unlockDate = new Date(capsule.dataset.unlockDate);
+                const timeDiff = unlockDate - now;
+                
+                if (timeDiff <= 0) {
+                    // Капсула разблокирована
+                    capsule.classList.remove('locked');
+                    capsule.classList.add('unlocked');
+                    capsule.querySelector('.capsule-icon').innerHTML = '🔓✨';
+                    capsule.querySelector('.timer').innerHTML = `
+                        <button class="unlock-btn">
+                            🎉 Открыть капсулу времени! 🎉
+                        </button>
+                    `;
+                } else {
+                    // Обновляем таймер
+                    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                    
+                    let timeString = '';
+                    if (days > 365) {
+                        const years = Math.floor(days / 365);
+                        const remainingDays = days % 365;
+                        timeString = `${years} ${years === 1 ? 'год' : years < 5 ? 'года' : 'лет'}`;
+                        if (remainingDays > 0) {
+                            timeString += ` ${remainingDays} ${remainingDays === 1 ? 'день' : remainingDays < 5 ? 'дня' : 'дней'}`;
+                        }
+                    } else if (days > 0) {
+                        timeString = `${days} ${days === 1 ? 'день' : days < 5 ? 'дня' : 'дней'}`;
+                        if (hours > 0) {
+                            timeString += ` ${hours} ${hours === 1 ? 'час' : hours < 5 ? 'часа' : 'часов'}`;
+                        }
+                    } else if (hours > 0) {
+                        timeString = `${hours} ${hours === 1 ? 'час' : hours < 5 ? 'часа' : 'часов'} ${minutes} ${minutes === 1 ? 'минута' : minutes < 5 ? 'минуты' : 'минут'}`;
+                    } else {
+                        timeString = `${minutes} ${minutes === 1 ? 'минута' : minutes < 5 ? 'минуты' : 'минут'}`;
+                    }
+                    
+                    const timerElement = capsule.querySelector('.time-display');
+                    if (timerElement) {
+                        timerElement.textContent = timeString;
+                    }
+                }
+            });
+        }
+        
+        // Обновляем таймеры каждую минуту
+        updateTimers();
+        setInterval(updateTimers, 60000);
+        
+        // Обработчик кликов по кнопкам разблокировки
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('unlock-btn')) {
+                // Здесь будет логика открытия капсулы
+                alert('🎉 Капсула времени открывается! Здесь будет ваше видео-поздравление! 🎉');
+            }
+        });
+    </script>
+</body>
 </html>
