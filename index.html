@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mark & Olya - Капсула времени 💕</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Caveat:wght@400;700&display=swap');
+        /* Подключение Magnolia Script шрифта */
+        @font-face {
+            font-family: 'Magnolia Script';
+            src: url('fonts/magnolia-script.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        /* Используем системные шрифты вместо Google Fonts */
         
         * {
             margin: 0;
@@ -14,7 +23,7 @@
         }
         
         body {
-            font-family: 'Comfortaa', cursive;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: linear-gradient(135deg, #FFFAF0 0%, #E6E6FA 50%, #FFB7C5 100%);
             min-height: 100vh;
             overflow-x: hidden;
@@ -58,21 +67,24 @@
         }
         
         .title {
-            font-family: 'Caveat', cursive;
-            font-size: 3.5rem;
+            font-family: 'Magnolia Script', Georgia, 'Times New Roman', serif;
+            font-size: 4rem;
             background: linear-gradient(45deg, #9370DB, #DDA0DD, #FFB7C5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-weight: normal;
         }
         
         .subtitle {
-            font-size: 1.2rem;
+            font-family: 'Magnolia Script', Georgia, 'Times New Roman', serif;
+            font-size: 1.5rem;
             color: #666;
             margin-bottom: 30px;
-            line-height: 1.6;
+            line-height: 1.8;
+            font-weight: normal;
         }
         
         .intro {
@@ -84,6 +96,135 @@
             font-size: 1.1rem;
             line-height: 1.7;
             color: #555;
+        }
+        
+        /* Секция фотографии молодых */
+        .couple-photo {
+            margin-bottom: 40px;
+        }
+        
+        .photo-placeholder {
+            background: linear-gradient(135deg, #FFB7C5 0%, #E6E6FA 50%, #DDA0DD 100%);
+            border-radius: 30px;
+            padding: 60px 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(147, 112, 219, 0.3);
+            border: 3px dashed rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .photo-placeholder:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(147, 112, 219, 0.4);
+        }
+        
+        .photo-content {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .photo-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .photo-text {
+            font-family: 'Magnolia Script', Georgia, 'Times New Roman', serif;
+            font-size: 1.8rem;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+        
+        .photo-subtext {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Секция свадебной капсулы */
+        .wedding-capsule-section {
+            margin-bottom: 50px;
+        }
+        
+        .wedding-capsule {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 183, 197, 0.1));
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(220, 20, 60, 0.2);
+            border: 3px solid rgba(220, 20, 60, 0.3);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: none;
+            text-align: center;
+        }
+        
+        .wedding-capsule::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.8s ease;
+        }
+        
+        .wedding-capsule:hover::before {
+            left: 100%;
+        }
+        
+        /* 
+        PLACEHOLDER'Ы ДЛЯ ИЛЛЮСТРАЦИЙ
+        
+        Когда иллюстрации будут готовы, замените в функции createCapsuleHTML:
+        
+        БЫЛО:
+        <div class="capsule-card placeholder ${capsule.iconClass}">
+            ${capsule.iconText}
+        </div>
+        
+        СТАНЕТ:
+        <img src="images/capsule-${capsule.id}.png" 
+             class="capsule-card" 
+             alt="${capsule.title}">
+        
+        И добавьте файлы:
+        - images/capsule-1year.png (сакура)
+        - images/capsule-3years.png (озеро)  
+        - images/capsule-5years.png (солнце)
+        - images/capsule-10years.png (звезды)
+        - images/capsule-25years.png (луна)
+        - images/capsule-50years.png (золото)
+        */
+        
+        .wedding-capsule .capsule-title {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #7B2CBF, #C77DFF, #E0AAFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            min-height: auto;
+            display: block;
+        }
+        
+        .wedding-capsule .youtube-preview {
+            height: 300px;
+            margin-top: 25px;
+        }
+        
+        .wedding-capsule .content-preview {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #333;
+            font-weight: 500;
         }
         
         .capsules-grid {
@@ -135,11 +276,75 @@
             border-color: rgba(135, 206, 235, 0.4);
         }
         
+        /* БАЗОВЫЙ класс .capsule-icon - как было изначально */
         .capsule-icon {
             font-size: 3rem;
             margin-bottom: 20px;
             display: block;
             text-align: center;
+        }
+        
+        /* НОВЫЙ класс для горизонтальных карточек капсул времени */
+        .capsule-card {
+            display: block;
+            width: 100%;
+            height: 180px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .capsule-card.placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .capsule-card.placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.8s ease;
+        }
+        
+        .capsule-card.placeholder:hover::before {
+            left: 100%;
+        }
+        
+        /* Уникальные градиенты для каждой темы */
+        .icon-sakura {
+            background: linear-gradient(135deg, #FFB7C5 0%, #FFCCCB 50%, #FFC0CB 100%);
+        }
+        
+        .icon-lake {
+            background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 50%, #E0F6FF 100%);
+        }
+        
+        .icon-sun {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
+        }
+        
+        .icon-stars {
+            background: linear-gradient(135deg, #483D8B 0%, #6A5ACD 50%, #9370DB 100%);
+        }
+        
+        .icon-moon {
+            background: linear-gradient(135deg, #C0C0C0 0%, #E6E6FA 50%, #F8F8FF 100%);
+        }
+        
+        .icon-gold {
+            background: linear-gradient(135deg, #FFD700 0%, #DAA520 50%, #B8860B 100%);
         }
         
         .locked .capsule-icon {
@@ -157,20 +362,18 @@
             50% { transform: scale(1.1); opacity: 1; }
         }
         
-        @keyframes sparkle {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(90deg) scale(1.1); }
-            50% { transform: rotate(180deg) scale(1); }
-            75% { transform: rotate(270deg) scale(1.1); }
-        }
-        
         .capsule-title {
-            font-family: 'Caveat', cursive;
-            font-size: 1.8rem;
+            font-family: 'Magnolia Script', Georgia, 'Times New Roman', serif;
+            font-size: 2rem;
             color: #333;
             margin-bottom: 15px;
             text-align: center;
-            line-height: 1.3;
+            line-height: 1.4;
+            font-weight: normal;
+            min-height: 8.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .timer {
@@ -250,9 +453,119 @@
             50% { transform: scale(1.2); }
         }
         
+        .youtube-preview {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            margin-top: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #FFB7C5, #E6E6FA);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .youtube-preview:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .youtube-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .youtube-preview:hover::before {
+            left: 100%;
+        }
+        
+        .youtube-preview-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .youtube-icon {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .youtube-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .video-placeholder {
+            background: linear-gradient(135deg, #FFB7C5, #E6E6FA);
+            height: 200px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            font-size: 3rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
         @media (max-width: 768px) {
             .title {
+                font-size: 3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .photo-placeholder {
+                padding: 40px 20px;
+            }
+            
+            .photo-icon {
+                font-size: 3rem;
+            }
+            
+            .photo-text {
+                font-size: 1.5rem;
+            }
+            
+            .wedding-capsule {
+                padding: 25px;
+            }
+            
+            .wedding-capsule .capsule-title {
+                font-size: 2rem;
+                min-height: auto;
+            }
+            
+            .capsule-title {
+                font-size: 1.7rem;
+                min-height: 7.14rem;
+            }
+            
+            .capsule-card {
+                height: 140px;
                 font-size: 2.5rem;
+            }
+            
+            .wedding-capsule .youtube-preview {
+                height: 220px;
             }
             
             .capsules-grid {
@@ -270,95 +583,126 @@
     <div class="container">
         <header class="header">
             <h1 class="title">Mark & Olya 💕</h1>
-            <p class="subtitle">Капсула времени нашей любви</p>
+            <p class="subtitle">Следуя сердцу<br>Каждый свой путь выбирай<br>Вместе за руки держась</p>
             <div class="intro">
-                ✨ Добро пожаловать в нашу магическую книгу воспоминаний! ✨<br>
-                Здесь хранятся послания от ваших близких, которые откроются в особенные моменты вашего совместного пути. 
-                Каждая капсула запечатана временем и любовью. 🌸
+                ✨ Добро пожаловать в волшебный сад воспоминаний! ✨<br>
+                Здесь хранятся драгоценные слова ваших близких, бережно запечатанные временем.<br>
+                Они откроются в особые мгновения вашего общего пути, озаряя сердца теплом и любовью. 🌸
             </div>
         </header>
         
-        <main class="capsules-grid">
-            <div class="capsule locked" data-unlock-date="2026-07-06">
-                <span class="capsule-icon">🔒✨</span>
-                <h2 class="capsule-title">Год под цветущей сакурой 🌸</h2>
-                <div class="timer">
-                    <div class="timer-label">Откроется через:</div>
-                    <div class="time-display" id="timer1">365 дней</div>
-                </div>
-                <div class="content-preview">
-                    Первые поздравления с годовщиной ждут вас под лепестками времени...
+        <!-- Место для фото молодых -->
+        <section class="couple-photo">
+            <div class="photo-placeholder">
+                <div class="photo-content">
+                    <span class="photo-icon">👫✨</span>
+                    <p class="photo-text">Здесь будет ваша аниме-фотография</p>
+                    <p class="photo-subtext">Место для стилизованного портрета Mark & Olya</p>
                 </div>
             </div>
-            
-            <div class="capsule locked" data-unlock-date="2028-07-06">
-                <span class="capsule-icon">🔒🌊</span>
-                <h2 class="capsule-title">Три весны в отражении озера 🌊</h2>
-                <div class="timer">
-                    <div class="timer-label">Откроется через:</div>
-                    <div class="time-display" id="timer3">3 года</div>
-                </div>
-                <div class="content-preview">
-                    Воспоминания третьей весны отражаются в глубине времени...
-                </div>
+        </section>
+
+        <!-- Свадебная капсула (открытая сразу) -->
+        <section class="wedding-capsule-section">
+            <div id="weddingCapsule">
+                <!-- Будет загружена динамически -->
             </div>
-            
-            <div class="capsule locked" data-unlock-date="2030-07-06">
-                <span class="capsule-icon">🔒☀️</span>
-                <h2 class="capsule-title">Пять кругов солнца над нашей дорогой ☀️</h2>
-                <div class="timer">
-                    <div class="timer-label">Откроется через:</div>
-                    <div class="time-display" id="timer5">5 лет</div>
-                </div>
-                <div class="content-preview">
-                    Солнечные послания пятилетнего счастья ждут своего часа...
-                </div>
-            </div>
-            
-            <div class="capsule locked" data-unlock-date="2035-07-06">
-                <span class="capsule-icon">🔒🌌</span>
-                <h2 class="capsule-title">Десять лет под небом тысячи звёзд 🌌</h2>
-                <div class="timer">
-                    <div class="timer-label">Откроется через:</div>
-                    <div class="time-display" id="timer10">10 лет</div>
-                </div>
-                <div class="content-preview">
-                    Звёздная пыль десятилетия хранит особенные слова любви...
-                </div>
-            </div>
-            
-            <div class="capsule locked" data-unlock-date="2050-07-06">
-                <span class="capsule-icon">🔒🌙</span>
-                <h2 class="capsule-title">Двадцать пять лет в свете серебряной луны 🌙</h2>
-                <div class="timer">
-                    <div class="timer-label">Откроется через:</div>
-                    <div class="time-display" id="timer25">25 лет</div>
-                </div>
-                <div class="content-preview">
-                    Серебряный свет четверти века озарит древние послания...
-                </div>
-            </div>
-            
-            <div class="capsule locked" data-unlock-date="2075-07-06">
-                <span class="capsule-icon">🔒✨</span>
-                <h2 class="capsule-title">Золотое небо на вершине пути ✨</h2>
-                <div class="timer">
-                    <div class="timer-label">Откроется через:</div>
-                    <div class="time-display" id="timer50">50 лет</div>
-                </div>
-                <div class="content-preview">
-                    Золотые слова полувекового счастья сияют в вечности...
-                </div>
-            </div>
+        </section>
+        
+        <!-- Капсулы времени -->
+        <main class="capsules-grid" id="capsulesContainer">
+            <!-- Капсулы будут загружены динамически из capsules.json -->
         </main>
         
         <footer class="footer">
-            <p>Создано с <span class="hearts">❤️</span> для Mark & Olya</p>
+            <p>Создано Vik&Mar&Family с <span class="hearts">❤️</span> для Mark & Olya</p>
             <p>Капсула времени откроет свои секреты в назначенный час</p>
         </footer>
     </div>
 
     <script>
+        // Данные капсул (в финальной версии будет в capsules.json)
+        const capsulesData = {
+            "weddingDate": "2025-08-05",
+            "weddingCapsule": {
+                "id": "wedding",
+                "title": "День свадьбы — первые лепестки сакуры",
+                "unlockDate": "2025-08-05",
+                "icon": "💖🌸💖",
+                "preview": "Поздравления от всех ваших близких в этот особенный день!",
+                "youtubeId": "dQw4w9WgXcQ", // Заглушка - замените на реальный ID
+                "description": "Самые нежные пожелания от тех, кто дорог вашему сердцу 💖"
+            },
+            "capsules": [
+                {
+                    "id": "1year",
+                    "title": "Год под цветущей сакурой",
+                    "unlockDate": "2026-08-05",
+                    "iconClass": "icon-sakura",
+                    "iconText": "🌸",
+                    "lockedText": "🔒",
+                    "preview": "Первые поздравления с годовщиной ждут вас под лепестками времени...",
+                    "youtubeId": "dQw4w9WgXcQ",
+                    "description": "Поздравления с первой годовщиной от ваших близких"
+                },
+                {
+                    "id": "3years", 
+                    "title": "Три весны в отражении озера",
+                    "unlockDate": "2028-08-05",
+                    "iconClass": "icon-lake",
+                    "iconText": "🌊",
+                    "lockedText": "🔒",
+                    "preview": "Воспоминания третьей весны отражаются в глубине времени...",
+                    "youtubeId": "dQw4w9WgXcQ",
+                    "description": "Пожелания счастья на третью годовщину"
+                },
+                {
+                    "id": "5years",
+                    "title": "Пять кругов солнца над нашей дорогой", 
+                    "unlockDate": "2030-08-05",
+                    "iconClass": "icon-sun",
+                    "iconText": "☀️",
+                    "lockedText": "🔒",
+                    "preview": "Солнечные послания пятилетнего счастья ждут своего часа...",
+                    "youtubeId": "dQw4w9WgXcQ",
+                    "description": "Теплые слова на пятилетие семейного счастья"
+                },
+                {
+                    "id": "10years",
+                    "title": "Десять лет под небом тысячи звёзд",
+                    "unlockDate": "2035-08-05", 
+                    "iconClass": "icon-stars",
+                    "iconText": "🌌",
+                    "lockedText": "🔒",
+                    "preview": "Звёздная пыль десятилетия хранит особенные слова любви...",
+                    "youtubeId": "dQw4w9WgXcQ",
+                    "description": "Мудрые напутствия на десятилетие любви"
+                },
+                {
+                    "id": "25years",
+                    "title": "Двадцать пять лет в свете серебряной луны",
+                    "unlockDate": "2050-08-05",
+                    "iconClass": "icon-moon",
+                    "iconText": "🌙",
+                    "lockedText": "🔒",
+                    "preview": "Серебряный свет четверти века озарит древние послания...",
+                    "youtubeId": "dQw4w9WgXcQ",
+                    "description": "Серебряная свадьба - четверть века вместе"
+                },
+                {
+                    "id": "50years",
+                    "title": "Золотое небо на вершине пути",
+                    "unlockDate": "2075-08-05",
+                    "iconClass": "icon-gold",
+                    "iconText": "✨",
+                    "lockedText": "🔒",
+                    "preview": "Золотые слова полувекового счастья сияют в вечности...",
+                    "youtubeId": "dQw4w9WgXcQ",
+                    "description": "Золотая свадьба - венец совместного пути"
+                }
+            ]
+        };
+
         // Создание падающих лепестков сакуры
         function createSakura() {
             const sakura = document.createElement('div');
@@ -377,69 +721,198 @@
         
         // Запуск лепестков
         setInterval(createSakura, 2000);
-        
+
+        // Функция для извлечения YouTube ID из URL
+        function getYouTubeId(url) {
+            if (!url) return null;
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : url;
+        }
+
+        // Создание HTML для свадебной капсулы
+        function createWeddingCapsuleHTML(capsule) {
+            const youtubeUrl = `https://www.youtube.com/watch?v=${getYouTubeId(capsule.youtubeId)}`;
+            return `
+                <div class="capsule wedding-capsule unlocked" data-unlock-date="${capsule.unlockDate}" data-capsule-id="${capsule.id}">
+                    <span class="capsule-icon">${capsule.icon}</span>
+                    <h2 class="capsule-title">${capsule.title}</h2>
+                    
+                    <a href="${youtubeUrl}" target="_blank" class="youtube-preview">
+                        <div class="youtube-preview-content">
+                            <span class="youtube-icon">🎬</span>
+                            <div class="youtube-text">Смотреть поздравление на YouTube</div>
+                        </div>
+                    </a>
+                    <div class="content-preview">
+                        ${capsule.description}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Создание HTML для капсулы
+        function createCapsuleHTML(capsule) {
+            const now = new Date();
+            const unlockDate = new Date(capsule.unlockDate);
+            const isUnlocked = now >= unlockDate;
+            
+            if (isUnlocked) {
+                const youtubeUrl = `https://www.youtube.com/watch?v=${getYouTubeId(capsule.youtubeId)}`;
+                return `
+                    <div class="capsule unlocked" data-unlock-date="${capsule.unlockDate}" data-capsule-id="${capsule.id}">
+                        <div class="capsule-card placeholder ${capsule.iconClass}">
+                            ${capsule.iconText}
+                        </div>
+                        <h2 class="capsule-title">${capsule.title}</h2>
+                        
+                        <a href="${youtubeUrl}" target="_blank" class="youtube-preview">
+                            <div class="youtube-preview-content">
+                                <span class="youtube-icon">🎬</span>
+                                <div class="youtube-text">Смотреть поздравление</div>
+                            </div>
+                        </a>
+                        <div class="content-preview" style="margin-top: 15px; font-style: normal; color: #333;">
+                            ${capsule.description}
+                        </div>
+                    </div>
+                `;
+            } else {
+                return `
+                    <div class="capsule locked" data-unlock-date="${capsule.unlockDate}" data-capsule-id="${capsule.id}">
+                        <div class="capsule-card placeholder ${capsule.iconClass}">
+                            ${capsule.lockedText}
+                        </div>
+                        <h2 class="capsule-title">${capsule.title}</h2>
+                        
+                        <div class="timer" id="timer-${capsule.id}">
+                            <div class="timer-label">Откроется через:</div>
+                            <div class="time-display">Загрузка...</div>
+                        </div>
+                        <div class="content-preview">
+                            ${capsule.preview}
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Загрузка и отображение капсул
+        function loadCapsules() {
+            // Загружаем свадебную капсулу
+            const weddingContainer = document.getElementById('weddingCapsule');
+            const weddingHTML = createWeddingCapsuleHTML(capsulesData.weddingCapsule);
+            weddingContainer.innerHTML = weddingHTML;
+            
+            // Загружаем обычные капсулы времени
+            const container = document.getElementById('capsulesContainer');
+            const capsulesHTML = capsulesData.capsules.map(createCapsuleHTML).join('');
+            container.innerHTML = capsulesHTML;
+        }
+
+        // Функция для правильного склонения русских слов
+        function declension(number, forms) {
+            // forms = ['год', 'года', 'лет'] или ['день', 'дня', 'дней']
+            const cases = [2, 0, 1, 1, 1, 2];
+            return forms[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[Math.min(number % 10, 5)]];
+        }
+
+        // Алгоритм специалистов по датам - точный расчет лет и дней
+        function diffYearsDays(a, b) {
+            // Приведение дат к UTC формату (без времени)
+            const toUTCDate = (date) => {
+                return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+            };
+            const aUTC = toUTCDate(a);
+            const bUTC = toUTCDate(b);
+            const invert = aUTC > bUTC;
+            const start = invert ? bUTC : aUTC;
+            const end = invert ? aUTC : bUTC;
+            
+            // Расчет полных лет
+            let years = end.getUTCFullYear() - start.getUTCFullYear();
+            const temp = new Date(Date.UTC(
+                start.getUTCFullYear() + years, 
+                start.getUTCMonth(), 
+                start.getUTCDate()
+            ));
+            
+            // Корректировка лет
+            if (temp > end) {
+                years--;
+            }
+            
+            // Расчет оставшихся дней
+            const anniversary = new Date(Date.UTC(
+                start.getUTCFullYear() + years, 
+                start.getUTCMonth(), 
+                start.getUTCDate()
+            ));
+            const msPerDay = 24 * 60 * 60 * 1000;
+            const days = Math.floor((end - anniversary) / msPerDay);
+            
+            return invert ? { years: -years, days: -days } : { years, days };
+        }
+
+        // Функция для расчета разности дат (использует алгоритм специалистов)
+        function calculateDateDifference(targetDateString) {
+            const now = new Date();
+            const target = new Date(targetDateString);
+            
+            // Используем алгоритм специалистов
+            const result = diffYearsDays(now, target);
+            
+            // Если дата уже прошла
+            if (result.years < 0 || (result.years === 0 && result.days <= 0)) {
+                return null;
+            }
+            
+            return {
+                years: result.years,
+                days: result.days
+            };
+        }
+
         // Функция обновления таймеров
         function updateTimers() {
-            const now = new Date();
-            const capsules = document.querySelectorAll('.capsule[data-unlock-date]');
-            
-            capsules.forEach(capsule => {
-                const unlockDate = new Date(capsule.dataset.unlockDate);
-                const timeDiff = unlockDate - now;
+            // Обновляем обычные капсулы
+            capsulesData.capsules.forEach(capsule => {
+                const timerElement = document.getElementById(`timer-${capsule.id}`);
+                if (!timerElement) return;
                 
-                if (timeDiff <= 0) {
-                    // Капсула разблокирована
-                    capsule.classList.remove('locked');
-                    capsule.classList.add('unlocked');
-                    capsule.querySelector('.capsule-icon').innerHTML = '🔓✨';
-                    capsule.querySelector('.timer').innerHTML = `
-                        <button class="unlock-btn">
-                            🎉 Открыть капсулу времени! 🎉
-                        </button>
-                    `;
+                const dateDiff = calculateDateDifference(capsule.unlockDate);
+                
+                if (!dateDiff) {
+                    // Капсула разблокирована - перезагружаем
+                    loadCapsules();
                 } else {
-                    // Обновляем таймер
-                    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-                    
+                    // Формируем строку времени
                     let timeString = '';
-                    if (days > 365) {
-                        const years = Math.floor(days / 365);
-                        const remainingDays = days % 365;
-                        timeString = `${years} ${years === 1 ? 'год' : years < 5 ? 'года' : 'лет'}`;
-                        if (remainingDays > 0) {
-                            timeString += ` ${remainingDays} ${remainingDays === 1 ? 'день' : remainingDays < 5 ? 'дня' : 'дней'}`;
+                    
+                    if (dateDiff.years > 0) {
+                        timeString += `${dateDiff.years} ${declension(dateDiff.years, ['год', 'года', 'лет'])}`;
+                        
+                        if (dateDiff.days > 0) {
+                            timeString += ` ${dateDiff.days} ${declension(dateDiff.days, ['день', 'дня', 'дней'])}`;
                         }
-                    } else if (days > 0) {
-                        timeString = `${days} ${days === 1 ? 'день' : days < 5 ? 'дня' : 'дней'}`;
-                        if (hours > 0) {
-                            timeString += ` ${hours} ${hours === 1 ? 'час' : hours < 5 ? 'часа' : 'часов'}`;
-                        }
-                    } else if (hours > 0) {
-                        timeString = `${hours} ${hours === 1 ? 'час' : hours < 5 ? 'часа' : 'часов'} ${minutes} ${minutes === 1 ? 'минута' : minutes < 5 ? 'минуты' : 'минут'}`;
                     } else {
-                        timeString = `${minutes} ${minutes === 1 ? 'минута' : minutes < 5 ? 'минуты' : 'минут'}`;
+                        // Только дни
+                        timeString = `${dateDiff.days} ${declension(dateDiff.days, ['день', 'дня', 'дней'])}`;
                     }
                     
-                    const timerElement = capsule.querySelector('.time-display');
-                    if (timerElement) {
-                        timerElement.textContent = timeString;
+                    const timeDisplay = timerElement.querySelector('.time-display');
+                    if (timeDisplay) {
+                        timeDisplay.textContent = timeString;
                     }
                 }
             });
         }
-        
-        // Обновляем таймеры каждую минуту
-        updateTimers();
-        setInterval(updateTimers, 60000);
-        
-        // Обработчик кликов по кнопкам разблокировки
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('unlock-btn')) {
-                // Здесь будет логика открытия капсулы
-                alert('🎉 Капсула времени открывается! Здесь будет ваше видео-поздравление! 🎉');
-            }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCapsules();
+            updateTimers();
+            setInterval(updateTimers, 60000); // Обновляем каждую минуту
         });
     </script>
 </body>
