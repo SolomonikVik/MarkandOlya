@@ -183,7 +183,7 @@
         /* 
         PLACEHOLDER'Ы ДЛЯ ИЛЛЮСТРАЦИЙ
         
-        Когда иллюстрации будут готовы, замените в функции createCapsuleHTML:
+        Когда иллюстрации будут готовы, замените в функции :
         
         БЫЛО:
         <div class="capsule-card placeholder ${capsule.iconClass}">
@@ -752,9 +752,9 @@
             } else {
                 return `
                     <div class="capsule locked" data-unlock-date="${capsule.unlockDate}" data-capsule-id="${capsule.id}">
-                        <div class="capsule-card placeholder ${capsule.iconClass}">
-                            ${capsule.lockedText}
-                        </div>
+                       <img src="images/capsule-${capsule.id}.png" 
+                             class="capsule-card" 
+                             alt="${capsule.title}">
                         <h2 class="capsule-title">${capsule.title}</h2>
                         
                         <div class="timer" id="timer-${capsule.id}">
