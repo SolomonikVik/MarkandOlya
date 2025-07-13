@@ -757,9 +757,9 @@
                 const youtubeUrl = `https://www.youtube.com/watch?v=${getYouTubeId(capsule.youtubeId)}`;
                 return `
                     <div class="capsule unlocked" data-unlock-date="${capsule.unlockDate}" data-capsule-id="${capsule.id}">
-                        <div class="capsule-card placeholder ${capsule.iconClass}">
-                            ${capsule.iconText}
-                        </div>
+                        <img src="images/capsule-${capsule.id}.png" 
+                             class="capsule-card" 
+                             alt="${capsule.title}">
                         <h2 class="capsule-title">${capsule.title}</h2>
                         
                         <a href="${youtubeUrl}" target="_blank" class="youtube-preview">
